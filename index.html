@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Project Prototype · Gaborone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body data-theme="dark">
+  <div id="map"></div>
+  <div class="grain"></div>
+
+  <div class="credit">© OpenStreetMap · OpenMapTiles · OpenFreeMap</div>
+
+  <aside class="panel">
+    <div class="head">
+      <div class="logo"></div>
+      <div>
+        <div class="eyebrow">Project Prototype</div>
+        <div class="title">Gaborone</div>
+      </div>
+      <button id="profileBtn" class="avatar" aria-label="Profile & settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0113 0"/></svg>
+      </button>
+    </div>
+
+    <div class="seg">
+      <button id="segExplore" class="on" data-mode="explore">Explore</button>
+      <button id="segDir" data-mode="directions">Directions</button>
+    </div>
+
+    <div id="exploreView">
+      <div class="field">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+        <input id="search" type="text" placeholder="Search Gaborone landmarks…" autocomplete="off" />
+      </div>
+      <div class="results" id="results"></div>
+    </div>
+
+    <div class="dirs" id="dirsView">
+      <div class="leg" id="legA"><div class="dot">A</div><div class="lt" id="legAtxt">Set start point</div></div>
+      <div class="dline"></div>
+      <div class="leg" id="legB"><div class="dot">B</div><div class="lt" id="legBtxt">Set destination</div></div>
+      <div class="dbtns">
+        <button class="btn" id="clearBtn">Clear</button>
+        <button class="btn primary" id="routeBtn" disabled>Route it</button>
+      </div>
+      <div class="hint">Click the map to drop A then B, or use a landmark’s pin.</div>
+      <div class="result" id="result">
+        <div class="rrow"><span class="rk">Distance</span><span class="rv" id="rDist">—</span></div>
+        <div class="rrow" style="margin-top:7px"><span class="rk">Drive time</span><span class="rv" id="rTime">—</span></div>
+        <div class="rnote" id="rNote"></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="stack">
+    <div class="ctl pair">
+      <button id="zoomIn" aria-label="Zoom in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+      <div class="div"></div>
+      <button id="zoomOut" aria-label="Zoom out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg></button>
+    </div>
+    <div class="ctl" id="compass" aria-label="Reset north"><svg id="compassIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.2 7.5L12 12 8.8 9.5 12 2z" fill="currentColor"/><path d="M12 12l-3.2 10L12 19l3.2 3-3.2-10z"/></svg></div>
+    <div class="ctl" id="pitch" aria-label="2D / 3D"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5-8 4.5-8-4.5L12 3zM4 12.5l8 4.5 8-4.5M4 17l8 4.5 8-4.5"/></svg></div>
+    <div class="ctl" id="locate" aria-label="Locate me"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg></div>
+    <div class="ctl" id="theme" aria-label="Theme"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3 6.6 6.6 0 0 0 21 12.8z"/></svg></div>
+  </div>
+
+  <div class="coords" id="coords">24.6581°S  25.9122°E</div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

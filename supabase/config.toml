@@ -1,0 +1,11 @@
+# Minimal Supabase local config. `npx supabase init` will expand this;
+# kept here so `npx supabase db reset` finds the project + seed.
+project_id = "project-prototype-gaborone"
+
+[db]
+port = 54322
+major_version = 15
+
+[db.seed]
+enabled = true
+sql_paths = ["./seed.sql"]
