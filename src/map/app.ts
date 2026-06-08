@@ -1,6 +1,7 @@
 import maplibregl from 'maplibre-gl';
 import { buildStyle, CENTER, BOUNDS, type Theme } from './style';
 import { svgIcon, type Poi } from './pois';
+import { modelTrainingEnabled, trackPandora } from '../pandora';
 
 let map: maplibregl.Map;
 let theme: Theme = 'dark';
@@ -179,7 +180,17 @@ function buildList(list: Poi[]) {
 }
 function wireSearch() {
   const input = $('search') as HTMLInputElement | null;
-  if (input) input.addEventListener('input', () => buildList(fuzzy(input.value)));
+  if (input) input.addEventListener('input', () => {
+    const list = fuzzy(input.value);
+    buildList(list);
+    const query = input.value.trim();
+    if (query.length >= 2) {
+      void trackPandora('location.searched', {
+        ...(modelTrainingEnabled() ? { query } : {}),
+        resultCount: list.length,
+      });
+    }
+  });
 }
 
 /* ---- mode ---- */
