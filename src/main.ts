@@ -1,5 +1,5 @@
 import './style.css';
-import { initMap } from './map/app';
+import { initMap, showFallbackMap } from './map/app';
 import { loadPois } from './data/supabase';
 import { initProfile } from './ui/profile';
 
@@ -9,4 +9,7 @@ initProfile();
 // list), then boot the map. See README for Supabase + migrations.
 loadPois()
   .then((pois) => initMap(pois))
-  .catch((err) => console.error('Failed to start map:', err));
+  .catch((err) => {
+    console.error('Failed to start map:', err);
+    showFallbackMap('startup_failed');
+  });

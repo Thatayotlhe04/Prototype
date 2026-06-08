@@ -14,6 +14,21 @@ const abMarkers: { a: maplibregl.Marker | null; b: maplibregl.Marker | null } = 
 let routeData: GeoJSON.FeatureCollection | GeoJSON.Feature = { type: 'FeatureCollection', features: [] };
 
 const $ = (id: string) => document.getElementById(id);
+let fallbackStarted = false;
+
+export function showFallbackMap(reason = 'map_engine_unavailable') {
+  if (fallbackStarted) return;
+  fallbackStarted = true;
+  console.warn(`[map] switching to fallback map: ${reason}`);
+  window.location.replace(new URL('fallback-map.html', window.location.href));
+}
+
+function armMapFallback(reason: string, delay = 10000) {
+  window.clearTimeout((armMapFallback as any).timer);
+  (armMapFallback as any).timer = window.setTimeout(() => showFallbackMap(reason), delay);
+  return () => window.clearTimeout((armMapFallback as any).timer);
+}
+
 let unitMode: 'km' | 'mi' = 'km';
 const fmtDist = (m: number) => unitMode === 'mi'
   ? (m < 1609 ? `${Math.round(m * 3.281)} ft` : `${(m / 1609.34).toFixed(1)} mi`)
@@ -21,6 +36,13 @@ const fmtDist = (m: number) => unitMode === 'mi'
 const fmtTime = (s: number) => { const m = Math.round(s / 60); return m < 60 ? `${m} min` : `${Math.floor(m / 60)}h ${m % 60}m`; };
 
 export async function initMap(loaded: Poi[]) {
+  const supported = (maplibregl as any).supported?.({ failIfMajorPerformanceCaveat: false }) ?? true;
+  if (!supported) {
+    showFallbackMap('webgl_not_supported');
+    return;
+  }
+
+  const clearFallback = armMapFallback('map_load_timeout');
   pois = loaded;
   const style = await buildStyle('dark');
 
@@ -54,6 +76,13 @@ export async function initMap(loaded: Poi[]) {
     addRouteLayers();
     addMarkers();
     buildList(pois);
+  });
+
+  map.once('idle', clearFallback);
+
+  map.on('error', (event: any) => {
+    const message = String(event?.error?.message || '');
+    if (/style|source|webgl|context|worker/i.test(message)) showFallbackMap(message);
   });
 
   map.on('rotate', () => {
