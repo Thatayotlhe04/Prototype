@@ -2,9 +2,10 @@ import './style.css';
 import { initMap, showFallbackMap } from './map/app';
 import { loadPois } from './data/supabase';
 import { initProfile } from './ui/profile';
-import { trackPandora } from './pandora';
+import { initPandoraCookieBanner, trackPandora } from './pandora';
 
 initProfile();
+initPandoraCookieBanner();
 
 // Load curated places (from Supabase/Postgres if configured, else the bundled
 // list), then boot the map. See README for Supabase + migrations.

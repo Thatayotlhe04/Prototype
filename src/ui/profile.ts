@@ -17,7 +17,7 @@ const PRIVACY = [
   ['', 'Project Prototype is a map of Gaborone. This policy explains what we collect and why, in plain terms. It is a starting template — have it reviewed against the Data Protection Act, 2018 before launch.'],
   ['What we collect', 'Account details you provide (email, display name). Optional places you submit, with their coordinates. Basic app preferences (theme, units). We do not track your live location unless you tap “locate”, and that position is used only to centre the map — it is not stored.'],
   ['Lawful basis & consent', 'Location tied to a person is personal data under Botswana’s Data Protection Act. We only store places you submit when you have given explicit consent, recorded with the submission. You can withdraw consent in Settings at any time.'],
-  ['How it is used', 'Submitted places help improve map accuracy and coverage. Pandora model_training is enabled by default and may be used for externally distributed or saleable datasets and machine-learning systems. You can opt out in Settings at any time.'],
+  ['How it is used', 'Submitted places help improve map accuracy and coverage. Pandora model_training is enabled by default and may be used for externally distributed or saleable datasets and machine-learning systems. You can opt out by choosing Reject in the cookie banner or from Settings at any time.'],
   ['Pandora', 'Prototype may send map views, searches, place corrections, and related usage metadata to Pandora. If model_training is off, raw search text is omitted and only internal product_improvement metadata is sent.'],
   ['Your rights', 'You may request access to, correction of, or deletion of your data, and you may object to processing. Contact the operator to exercise these rights.'],
   ['Retention & security', 'Data is stored on managed infrastructure with row-level access controls so each account can reach only its own records. We keep data only as long as needed for the purposes above.']
@@ -27,7 +27,7 @@ const TERMS = [
   ['The service', 'Project Prototype provides maps, search and routing for Gaborone. Map geometry is approximate in places and provided “as is”; do not rely on it for emergencies or precise navigation.'],
   ['Your account', 'You are responsible for activity under your account and for the accuracy of places you submit. Don’t submit unlawful, misleading, or infringing content.'],
   ['Acceptable use', 'No scraping, automated bulk submission, or attempts to disrupt or overload the service. Submission limits apply and abuse may lead to suspension.'],
-  ['Content you submit', 'You keep ownership of what you submit but grant us a licence to use it to operate and improve the service. Pandora model_training is enabled by default for future model and dataset development, including external distribution or sale, unless you opt out in Settings.'],
+  ['Content you submit', 'You keep ownership of what you submit but grant us a licence to use it to operate and improve the service. Pandora model_training is enabled by default for future model and dataset development, including external distribution or sale, unless you opt out by choosing Reject in the cookie banner or from Settings.'],
   ['Liability', 'The service is provided without warranties. To the extent permitted by law, we are not liable for losses arising from its use.']
 ];
 
