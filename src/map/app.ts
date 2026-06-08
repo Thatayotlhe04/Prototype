@@ -23,7 +23,7 @@ export function showFallbackMap(reason = 'map_engine_unavailable') {
   window.location.replace(new URL('fallback-map.html', window.location.href));
 }
 
-function armMapFallback(reason: string, delay = 10000) {
+function armMapFallback(reason: string, delay = 3500) {
   window.clearTimeout((armMapFallback as any).timer);
   (armMapFallback as any).timer = window.setTimeout(() => showFallbackMap(reason), delay);
   return () => window.clearTimeout((armMapFallback as any).timer);
